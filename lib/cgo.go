@@ -13,6 +13,13 @@ void gotoxy(int x,int y) {
 int direct() {
     return _getch();
 }
+
+void hideCursor() {
+    CONSOLE_CURSOR_INFO  cci;
+    cci.bVisible = FALSE;
+    cci.dwSize = sizeof(cci);
+    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cci);
+}
 */
 import "C"
 
@@ -22,4 +29,8 @@ func GotoXY(x, y int) {
 
 func Direct() int {
 	return int(C.direct())
+}
+
+func HideCursor() {
+    C.hideCursor()
 }
